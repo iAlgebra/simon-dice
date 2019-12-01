@@ -1,0 +1,19 @@
+.square {
+    height: 200px;
+}
+
+#square-1 {
+    background-color: red;
+}
+
+#square-2 {
+    background-color: yellow;
+}
+
+#square-3 {
+    background-color: green;
+}
+
+#square-4 {
+    background-color: blue;
+}
