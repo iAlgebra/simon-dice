@@ -1,5 +1,6 @@
 .square {
     height: 200px;
+    opacity: 0.5;
 }
 
 #square-1 {
