@@ -2,6 +2,7 @@ const $startButton = document.querySelector('#start');
 const $squares = document.querySelectorAll('.square');
 let machineList = [];
 let humanList = [];
+let $round = document.querySelector('#round');
 
 function getRandomSquare() {
   const $squares = document.querySelectorAll('.square');
@@ -31,6 +32,7 @@ $squares.forEach(function(square) {
 });
 
 function machineTurn() {
+  $round.textContent++;
   const $lastSquareSelectedByMachine = getRandomSquare();
   machineList.push($lastSquareSelectedByMachine);
   machineList.forEach(function(machineSquare, i) {
