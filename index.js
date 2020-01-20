@@ -18,6 +18,7 @@ function getRandomSquare() {
 }
 
 $startButton.onclick = function() {
+  $state.classList.remove('lost');
   this.blur(); // removes focus outline
   machineTurn();
 };
@@ -28,6 +29,7 @@ $squares.forEach(function(square) {
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
       updateState('You lost!!');
+      $state.classList.add('lost');
       humanList = [];
       machineList = [];
     } else {
