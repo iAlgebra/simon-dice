@@ -1,8 +1,15 @@
 const $startButton = document.querySelector('#start');
 const $squares = document.querySelectorAll('.square');
+const $state = document.querySelector('#state');
 let machineList = [];
 let humanList = [];
 let $round = document.querySelector('#round');
+
+updateState('Click on "Start" to start playing!');
+
+function updateState(message) {
+  $state.textContent = message;
+}
 
 function getRandomSquare() {
   const $squares = document.querySelectorAll('.square');
@@ -20,7 +27,7 @@ $squares.forEach(function(square) {
     humanList.push(this);
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
-      alert('You lost!!');
+      updateState('You lost!!');
       humanList = [];
       machineList = [];
     } else {
