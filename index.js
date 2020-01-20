@@ -28,8 +28,9 @@ $squares.forEach(function(square) {
     humanList.push(this);
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
-      updateState('You lost!!');
+      updateState('You lost!!! Click on "Start" to play again');
       $state.classList.add('lost');
+      $round.textContent = '0';
       humanList = [];
       machineList = [];
     } else {
