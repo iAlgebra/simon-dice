@@ -64,3 +64,7 @@ function squareLightsAnimation(square, i) {
     }, 500);
   }, 1000 * i);
 }
+
+// TO-DO:
+// highlight user's actions (use the function squareLightsAnimation)
+// figure out the state message to display in the correct time
