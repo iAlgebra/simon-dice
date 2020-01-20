@@ -25,6 +25,7 @@ $startButton.onclick = function() {
 
 $squares.forEach(function(square) {
   square.onclick = function() {
+    updateState('User\'s turn');
     humanList.push(this);
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
@@ -42,6 +43,7 @@ $squares.forEach(function(square) {
 });
 
 function machineTurn() {
+  updateState('Machine\'s turn');
   $round.textContent++;
   const $lastSquareSelectedByMachine = getRandomSquare();
   machineList.push($lastSquareSelectedByMachine);
