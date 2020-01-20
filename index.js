@@ -10,6 +10,7 @@ function getRandomSquare() {
 }
 
 $startButton.onclick = function() {
+  this.blur(); // removes focus outline
   machineTurn();
 };
 
