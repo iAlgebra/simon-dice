@@ -23,7 +23,7 @@ $squares.forEach(function(square) {
       machineList = [];
     } else {
       if (humanList.length === machineList.length) {
-        machineTurn();
+        setTimeout(machineTurn, 500);
       }
     }
   };
