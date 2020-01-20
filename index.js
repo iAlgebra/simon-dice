@@ -18,7 +18,8 @@ function getRandomSquare() {
 }
 
 $startButton.onclick = function() {
-  $state.classList.remove('lost');
+  $state.classList.remove('alert-danger');
+  $state.classList.add('alert-primary');
   this.blur(); // removes focus outline
   machineTurn();
 };
@@ -30,7 +31,8 @@ $squares.forEach(function(square) {
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
       updateState('You lost!!! Click on "Start" to play again');
-      $state.classList.add('lost');
+      $state.classList.add('alert-danger');
+      $state.classList.remove('alert-primary');
       $round.textContent = '0';
       humanList = [];
       machineList = [];
