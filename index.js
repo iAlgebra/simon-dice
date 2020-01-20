@@ -33,12 +33,22 @@ function machineTurn() {
   const $lastSquareSelectedByMachine = getRandomSquare();
   machineList.push($lastSquareSelectedByMachine);
   machineList.forEach(function(machineSquare, i) {
-    setTimeout(function() {
-      machineSquare.style.border = '2px solid black';
-      setTimeout(function() {
-        machineSquare.style.border = 'none';
-      }, 1000);
-    }, 1000 * i);
+    squareLightsAnimation(machineSquare, i);
+    // setTimeout(function() {
+    //   machineSquare.style.opacity = '1';
+    //   setTimeout(function() {
+    //     machineSquare.style.opacity = '0.5';
+    //   }, 500);
+    // }, 1000 * i);
   });
   humanList = [];
+}
+
+function squareLightsAnimation(square, i) {
+  setTimeout(function() {
+    square.style.opacity = '1';
+    setTimeout(function() {
+      square.style.opacity = '0.5';
+    }, 500);
+  }, 1000 * i);
 }
