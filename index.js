@@ -72,4 +72,5 @@ function squareLightsAnimation(square, i) {
 
 // TO-DO:
 // highlight user's actions (use the function squareLightsAnimation)
-// figure out the state message to display in the correct time
+// figure out when it's the correct time to display the state message (i.e. who's turn is it?)
+// disable user click when it's not its turn
