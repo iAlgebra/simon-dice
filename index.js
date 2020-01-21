@@ -4,6 +4,8 @@ const $state = document.querySelector('#state');
 let machineList = [];
 let humanList = [];
 let $round = document.querySelector('#round');
+let machinePlays = false;
+let gameStarted = false;
 
 updateState('Click on "Start" to start playing!');
 
@@ -18,6 +20,12 @@ function getRandomSquare() {
 }
 
 $startButton.onclick = function() {
+  if (gameStarted) {
+    location.reload();
+  }
+  gameStarted = true;
+  machineList = [];
+  $round.textContent = '0';
   $state.classList.remove('alert-danger');
   $state.classList.add('alert-primary');
   this.blur(); // removes focus outline
@@ -26,10 +34,14 @@ $startButton.onclick = function() {
 
 $squares.forEach(function(square) {
   square.onclick = function() {
-    updateState('User\'s turn');
+    if (machinePlays) {
+      return;
+    }
+    squareLightsAnimation(this, 0, 500);
     humanList.push(this);
     const machineSquare = machineList[humanList.length - 1];
     if (this !== machineSquare) {
+      machinePlays = true;
       updateState('You lost!!! Click on "Start" to play again');
       $state.classList.add('alert-danger');
       $state.classList.remove('alert-primary');
@@ -38,39 +50,37 @@ $squares.forEach(function(square) {
       machineList = [];
     } else {
       if (humanList.length === machineList.length) {
-        setTimeout(machineTurn, 500);
+        setTimeout(machineTurn, 1000);
       }
     }
   };
 });
 
 function machineTurn() {
+  const delayBase = 1000;
+  const duration = 500;
   updateState('Machine\'s turn');
+  machinePlays = true;
   $round.textContent++;
   const $lastSquareSelectedByMachine = getRandomSquare();
   machineList.push($lastSquareSelectedByMachine);
   machineList.forEach(function(machineSquare, i) {
-    squareLightsAnimation(machineSquare, i);
-    // setTimeout(function() {
-    //   machineSquare.style.opacity = '1';
-    //   setTimeout(function() {
-    //     machineSquare.style.opacity = '0.5';
-    //   }, 500);
-    // }, 1000 * i);
+    squareLightsAnimation(machineSquare, delayBase * i, duration);
   });
+  const lastIndex = machineList.length - 1;
+  const totalDuration = delayBase * lastIndex + duration;
+  setTimeout(function() {
+    updateState('User\'s turn');
+    machinePlays = false;
+  }, totalDuration);
   humanList = [];
 }
 
-function squareLightsAnimation(square, i) {
+function squareLightsAnimation(square, delay, duration) {
   setTimeout(function() {
     square.style.opacity = '1';
     setTimeout(function() {
       square.style.opacity = '0.5';
-    }, 500);
-  }, 1000 * i);
+    }, duration);
+  }, delay);
 }
-
-// TO-DO:
-// highlight user's actions (use the function squareLightsAnimation)
-// figure out when it's the correct time to display the state message (i.e. who's turn is it?)
-// disable user click when it's not its turn
